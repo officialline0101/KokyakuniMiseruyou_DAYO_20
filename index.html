@@ -11,17 +11,18 @@
            ========================================= */
         :root {
             --primary-color: #bf9f62; /* ブランドゴールド */
-            --primary-light: #f5f0e6; /* 薄いベージュ背景 */
-            --text-color: #4a4a4a;    /* 濃いグレー */
-            --text-light: #888888;    /* 薄いグレー */
-            --bg-color: #fcfbf9;      /* 全体背景色（オフホワイト） */
+            --primary-dark: #a3854d;  /* 濃いめのゴールド（境界線用） */
+            --primary-light: #f9f6f0; /* 薄いベージュ背景 */
+            --text-color: #333333;    /* 文字色を少し濃くして可読性UP */
+            --text-light: #666666;    /* サブテキスト */
+            --bg-color: #f7f6f2;      /* 全体背景色（少し温かみのあるグレー） */
             --white: #ffffff;
-            --border-radius: 6px;
+            --border-radius: 8px;
             --accent-red: #d9534f;
         }
 
         body {
-            font-family: "Yu Mincho", "Hiragino Mincho ProN", "MS PMincho", serif; /* 見出しに合わせて明朝寄り、可読性はゴシックで調整 */
+            font-family: "Yu Mincho", "Hiragino Mincho ProN", "MS PMincho", serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             display: flex;
@@ -42,9 +43,10 @@
         .container {
             background-color: var(--white);
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* 柔らかい影に変更 */
+            /* 影を少し強めて浮き上がらせる */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             width: 95%;
-            max-width: 600px; /* 少し幅を広げてゆとりを持たせる */
+            max-width: 600px;
             padding: 30px;
             box-sizing: border-box;
             margin: 0 auto;
@@ -61,21 +63,20 @@
             font-weight: normal;
             letter-spacing: 0.1em;
             line-height: 1.4;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #e0e0e0;
             padding-bottom: 20px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.05); /* 文字にわずかな立体感 */
         }
 
-        /* ラベルのデザインをブロック型からシンプルで上品な形へ変更 */
         .label {
             display: block;
             margin-top: 25px;
             margin-bottom: 10px;
             padding: 5px 0 5px 12px;
-            font-weight: 600;
+            font-weight: 700; /* 文字をくっきり太く */
             color: var(--text-color);
-            background-color: transparent; /* 背景色削除 */
-            border-left: 4px solid var(--primary-color); /* 左にアクセントライン */
-            border-radius: 0;
+            background-color: transparent;
+            border-left: 5px solid var(--primary-color);
             text-align: left;
             font-size: 16px;
             letter-spacing: 0.05em;
@@ -88,20 +89,23 @@
         input[type="tel"],
         textarea {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 15px; /* 少し広げる */
             margin-bottom: 15px;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc; /* 枠線を少し濃く */
             border-radius: var(--border-radius);
             box-sizing: border-box;
-            font-size: 16px; /* スマホでズームしないサイズ */
-            background-color: #fdfdfd;
-            transition: border-color 0.3s;
+            font-size: 16px;
+            background-color: #fff;
+            /* インナーシャドウを入れて「入力欄」としての奥行きを出す */
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03); 
+            transition: all 0.3s;
         }
 
         input:focus, textarea:focus {
             outline: none;
             border-color: var(--primary-color);
-            background-color: var(--white);
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(191, 159, 98, 0.15); /* フォーカス時のグロー効果 */
         }
 
         textarea {
@@ -125,18 +129,20 @@
         .menu-sections button,
         .irradiations button,
         .options button {
-            flex: 1 1 45%; /* モバイルで2列になるように調整 */
-            padding: 12px;
-            border: 1px solid #ddd;
+            flex: 1 1 45%;
+            padding: 14px;
+            border: 1px solid #dcdcdc; /* 境界線をはっきり */
+            border-bottom: 2px solid #ccc; /* 下線を太くしてボタンらしさを出す */
             border-radius: var(--border-radius);
-            background-color: var(--white);
+            background-color: #fff;
             color: var(--text-color);
             cursor: pointer;
             box-sizing: border-box;
             text-align: center;
             font-size: 14px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+            /* 軽い影をつける */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03); 
         }
 
         /* ボタンホバー */
@@ -145,22 +151,26 @@
             .symptoms button:hover,
             .menu-sections button:hover,
             .irradiations button:hover {
-                background-color: var(--primary-light);
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.08);
                 border-color: var(--primary-color);
             }
         }
 
-        /* アクティブ（選択中）ボタン */
+        /* アクティブ（選択中）ボタン - ここをくっきりさせる */
         .visit-buttons button.active,
         .symptoms button.active,
         .menu-sections button.active,
         .irradiations button.active,
         .options button.active {
             background-color: var(--primary-color);
+            background: linear-gradient(135deg, #bf9f62 0%, #a88a50 100%); /* グラデーションでリッチに */
             color: var(--white);
-            border-color: var(--primary-color);
+            border: 1px solid var(--primary-dark);
+            border-bottom: 2px solid #8c7240; /* 沈んだ感じを演出 */
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(191, 159, 98, 0.4);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); /* 内側に影を入れて押下感を出す */
+            transform: translateY(1px); /* 実際に少し下げる */
         }
 
         /* =========================================
@@ -168,11 +178,11 @@
            ========================================= */
         .menu-section {
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -183,62 +193,56 @@
         /* ハイライト（カテゴリ見出し） */
         .highlight-background {
             background-color: var(--primary-light);
-            padding: 12px;
+            padding: 10px;
             border-radius: var(--border-radius);
             margin-bottom: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
             text-align: center;
-            border: 1px solid rgba(191, 159, 98, 0.2);
+            border: 1px solid rgba(191, 159, 98, 0.3);
+            /* 境界をはっきりさせる */
         }
 
         .highlight-text {
             display: block;
             font-weight: bold;
-            color: var(--primary-color);
+            color: var(--primary-dark); /* 少し濃く */
             font-family: "Yu Mincho", serif;
             letter-spacing: 0.1em;
         }
 
-/* =========================================
-           施術詳細テキストエリア（修正版）
+        /* =========================================
+           施術詳細テキストエリア
            ========================================= */
         #treatment-text {
-            background-color: #ffffff;
-            /* 少し温かみのある白背景 */
+            background-color: #fff;
             padding: 20px;
             border-radius: 8px;
-            /* 角丸を少し大きく */
             margin-top: 15px;
             margin-bottom: 25px;
-            border: 1px solid #e6decb;
-            /* 薄いベージュの枠線 */
+            border: 1px solid #e0d5c0; /* 境界線を明確に */
             border-left: 5px solid var(--primary-color);
-            /* 左側にアクセントカラーの太線 */
             font-size: 14px;
             line-height: 1.8;
-            color: #555;
-            box-shadow: 0 4px 15px rgba(191, 159, 98, 0.1);
-            /* ほんのりゴールドの影 */
+            color: #444;
+            /* 浮き上がり感を強化 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             
-            /* アニメーション用設定 */
             opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            display: none; /* 初期状態 */
+            transform: translateY(-5px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            display: none;
         }
 
-        /* 表示時のクラス */
         #treatment-text.show {
             display: block;
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* 内部のテキストレイアウト調整 */
         #treatment-text strong {
-            color: var(--primary-color);
+            color: var(--primary-dark);
             font-size: 15px;
-            border-bottom: 1px dashed #ddd;
+            border-bottom: 1px dotted #999;
             padding-bottom: 2px;
             margin-bottom: 4px;
             display: inline-block;
@@ -268,31 +272,36 @@
             padding: 8px 16px;
             background-color: #fff;
             color: var(--text-color);
-            border: 1px solid #ddd;
-            border-radius: 20px; /* 丸みをつける */
+            border: 1px solid #ccc; /* 枠線を濃く */
+            border-bottom: 2px solid #bbb; /* 立体感 */
+            border-radius: 20px;
             cursor: pointer;
             font-size: 13px;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         
-        .month-button:hover, .week-button:hover {
-            background-color: #f0f0f0;
+        .month-button:active, .week-button:active {
+            transform: translateY(2px);
+            border-bottom: 1px solid #ccc;
+            box-shadow: none;
         }
 
         .current-month {
-            font-size: 18px;
-            font-weight: normal;
+            font-size: 19px;
+            font-weight: bold;
             color: var(--text-color);
             font-family: "Yu Mincho", serif;
         }
 
         .calendar {
             background-color: #fff;
-            border: 1px solid #eee;
+            border: 1px solid #ddd;
             border-radius: 8px;
             overflow: hidden;
             width: 100%;
-            box-shadow: none; /* フラットに */
+            /* カレンダー自体にも影をつける */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
 
         .calendar table {
@@ -302,12 +311,13 @@
         }
 
         .calendar th {
-            background-color: #f9f9f9;
-            color: var(--text-color);
+            background-color: #f2f2f2; /* 背景を少し濃く */
+            color: #444;
             padding: 10px 2px;
             font-size: 12px;
-            font-weight: normal;
-            border-bottom: 2px solid #eee;
+            font-weight: bold;
+            border-bottom: 2px solid #acacac; /* 線を強調 */
+            border-right: 1px solid #acacac;
         }
 
         .calendar td {
@@ -315,7 +325,8 @@
             padding: 12px 2px;
             cursor: pointer;
             vertical-align: middle;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #acacac;
+            border-right: 1px solid #acacac; /* 縦線も薄く入れる */
             font-size: 14px;
             color: var(--text-color);
             transition: background-color 0.2s;
@@ -325,11 +336,11 @@
         .calendar th:first-child,
         .calendar td:first-child {
             width: 15%;
-            background-color: #fff;
+            background-color: #fafafa;
             font-size: 11px;
-            color: #888;
+            color: #666;
             font-weight: bold;
-            border-right: 1px solid #f0f0f0;
+            border-right: 1px solid #acacac; /* 境界をはっきり */
         }
 
         .calendar td:hover {
@@ -339,18 +350,19 @@
         .calendar td.selected {
             background-color: var(--primary-color);
             color: #fff;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* ○と✕の色 */
         .calendar td.available {
-            color: var(--primary-color); /* ブランドカラーで○ */
+            color: var(--primary-color);
             font-weight: bold;
         }
 
         .calendar td.unavailable {
-            color: #ccc;
-            background-color: #fafafa;
+            color: #ffffff;
+            background-color: #c9c9c9;
             pointer-events: none;
+            font-size: 10px; /* バツ印などは少し小さく */
         }
 
         /* =========================================
@@ -360,69 +372,79 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0; /* 線を濃く */
         }
         
         .info-row p {
             margin: 0;
             font-size: 14px;
             flex: 1;
+            color: #444;
         }
 
         .info-row strong {
-            color: var(--primary-color) !important; /* 強制的にブランドカラー */
+            color: var(--primary-dark) !important;
+            font-weight: 700;
         }
 
         .edit-button {
-            background-color: transparent;
-            color: #999;
-            border: 1px solid #ddd;
+            background-color: #fff;
+            color: #777;
+            border: 1px solid #ccc;
             border-radius: 20px;
-            padding: 5px 12px;
-            font-size: 12px;
+            padding: 5px 14px;
+            font-size: 11px;
             cursor: pointer;
             transition: all 0.3s;
             margin-left: 10px;
             white-space: nowrap;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.05);
         }
 
         .edit-button:hover {
-            background-color: #eee;
-            color: #666;
+            background-color: #f5f5f5;
+            color: #333;
+            border-color: #999;
         }
 
         .submit-button {
             width: 100%;
             padding: 18px;
-            margin-top: 30px;
+            margin-top: 35px;
             border: none;
             border-radius: var(--border-radius);
-            background: linear-gradient(135deg, #bf9f62 0%, #a88a50 100%); /* 高級感のあるグラデーション */
+            /* グラデーションを少し濃くして高級感UP */
+            background: linear-gradient(135deg, #bf9f62 0%, #96783d 100%);
             color: #fff;
             font-size: 18px;
             font-weight: bold;
             letter-spacing: 0.1em;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(191, 159, 98, 0.4);
+            /* 影をはっきり落とす */
+            box-shadow: 0 8px 20px rgba(150, 120, 61, 0.4);
             transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            top: 0;
         }
 
         .submit-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(191, 159, 98, 0.5);
+            box-shadow: 0 10px 25px rgba(150, 120, 61, 0.5);
         }
         
         .submit-button:active {
-            transform: translateY(0);
+            transform: translateY(1px);
+            box-shadow: 0 4px 10px rgba(150, 120, 61, 0.4);
         }
 
         /* メニュー項目の削除ボタンなど */
         .menu-items-wrapper {
-            background: var(--primary-light);
-            padding: 10px;
+            background: #fff8eb; /* 背景色を少し色付け */
+            padding: 15px;
+            border: 1px solid #ebdcc0;
             border-radius: var(--border-radius);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         .menu-item {
@@ -430,7 +452,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
-            border-bottom: 1px dotted rgba(0,0,0,0.1);
+            border-bottom: 1px dashed rgba(191, 159, 98, 0.3);
         }
         .menu-item:last-child {
             border-bottom: none;
@@ -438,8 +460,8 @@
         
         .remove-button {
             background: #fff;
-            border: 1px solid #ddd;
-            color: #999;
+            border: 1px solid #ccc;
+            color: #888;
             width: 24px;
             height: 24px;
             border-radius: 50%;
@@ -447,10 +469,11 @@
             font-size: 12px;
             line-height: 22px;
             padding: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         /* =========================================
-           ローディングスピナー（デザイン微調整）
+           ローディングスピナー
            ========================================= */
         .loading-spinner {
             position: fixed;
@@ -459,11 +482,12 @@
             transform: translate(-50%, -50%);
             display: none;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.9); /* 白ベースに変更 */
+            background-color: rgba(255, 255, 255, 0.95);
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             z-index: 9999;
+            border: 1px solid #eee;
         }
 
         .spinner {
@@ -482,7 +506,6 @@
             font-weight: bold;
             color: var(--primary-color);
             letter-spacing: 0.1em;
-            text-shadow: none;
         }
 
         @keyframes spin {
@@ -497,17 +520,22 @@
                 width: 100%;
                 padding: 20px 15px;
                 border-radius: 0;
-                box-shadow: none;
+                box-shadow: none; /* スマホ全画面時は影なしですっきり */
             }
             
             body {
-                background-color: #fff; /* スマホでは背景白ですっきりさせる */
+                background-color: #fff;
                 padding: 0;
             }
 
-            .info-text {
-                font-size: 12px;
-            }
+.info-text {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+}
             
             h1 {
                 font-size: 22px;
@@ -517,24 +545,23 @@
             .symptoms button,
             .menu-sections button,
             .irradiations button {
-                padding: 14px 5px; /* タップ領域確保 */
+                padding: 14px 5px;
+                font-size: 13px; /* 少しフォント調整 */
             }
             
-            /* カレンダーの文字を小さくして収める */
             .calendar th, .calendar td {
                 font-size: 11px;
                 padding: 8px 1px;
             }
             
-            /* 時間列はさらに小さく */
             .calendar th:first-child, .calendar td:first-child {
                 font-size: 10px;
             }
         }
 
-        /* ユーティリティクラス（JSで使用されているもの） */
+        /* ユーティリティクラス */
         .available { color: var(--primary-color); }
-        .unavailable { background-color: #f5f5f5; color: #ccc; }
+        .unavailable { background-color: #f9f9f9; color: #ccc; }
         .red-circle { color: var(--accent-red); }
         .bold-cross { font-weight: bold; }
 
@@ -699,7 +726,7 @@
 
         <div class="label">ご予約内容確認</div>
         <div id="displayInfo">
-            <div style="padding: 20px; text-align: center; color: #999; font-size: 14px; background: #fafafa; border-radius: 6px;">
+            <div style="padding: 20px; text-align: center; color: #999; font-size: 14px; background: #fafafa; border-radius: 6px; border: 1px dashed #ddd;">
                 まだ入力されていません
             </div>
         </div>
@@ -777,7 +804,7 @@
           '全身オイルリンパ×チネイザン（75分）': 90,
           '貼るだけWINBACK施術（部位別20分）': 30,
           'WINBACK施術': 30,
-          'ヨガ': 70,                                        
+          'ヨガ': 70,                                
           'TRXサスペンショントレーニング': 50,
           'WINBACK×TRXセットコース（60分）': 90,
           'おがくず酵素風呂温浴＋メディカルチネイザン': 120,
@@ -849,7 +876,7 @@
                 <div class="info-row">
                     <p>${totalTimeText}</p>
                 </div>
-                <div class="info-row" style="background:var(--primary-light); padding:10px; border-radius:6px; margin-top:10px;">
+                <div class="info-row" style="background:var(--primary-light); padding:10px; border-radius:6px; margin-top:10px; border:1px solid #ebdcc0;">
                     <p>${selectedDateText}</p>
                     <button class="edit-button" style="background:#fff;" onclick="scrollToElement('calendar1')">修正</button>
                 </div>
