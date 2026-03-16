@@ -1306,6 +1306,15 @@ if (savedGender) {
             // 選択された日時をリセット
             selectedFullDate = '';
 
+            // omakaseセクション内の場合は単一選択にする
+            const isOmakase = button.closest('#omakase') !== null;
+            if (isOmakase) {
+                const omakaseButtons = document.querySelectorAll('#omakase .irradiations button');
+                omakaseButtons.forEach(btn => {
+                    if (btn !== button) btn.classList.remove('active');
+                });
+            }
+
             // ボタンの選択状態を切り替える
             button.classList.toggle('active');
 
