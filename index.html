@@ -799,6 +799,49 @@
         max-width: 95%;
     }
 }
+
+.policy-container {
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f8f9fa; /* 柔らかいグレー */
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 90%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.policy-text {
+    font-size: 15px;
+    color: #333; /* メニューに合わせた黒字 */
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: left;
+    display: inline-block;
+    line-height: 1.5;
+}
+
+.policy-agreement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.policy-agreement input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
     </style>
 </head>
 
@@ -812,7 +855,7 @@
     </div>
 
     <div class="container">
-        <h1>ヘアカラー専門ＭＩＮＴ<br>新琴似店<br>予約フォーム</h1>
+        <h1>ヘアカラー専門ＭＩＮＴ<br>石狩店<br>予約フォーム</h1>
         <div class="label">お客様名<span class="required">必須</span></div>
         <input type="text" id="name" placeholder="お名前を入力してください" oninput="saveInput('name')">
 
@@ -830,115 +873,122 @@
         <div class="info-text">※メニューを選択すると空き状況のカレンダーが表示されます</div>
         <div class="menu-sections">
             <button type="button" onclick="showMenu('omakase')">迷ったらこちら！おまかせケアカラーセット</button>
-            <button type="button" onclick="showMenu('female')">コラーゲンカラー</button>
             <button type="button" onclick="showMenu('whitening')">プレックスカラー</button>
+            <button type="button" onclick="showMenu('female')">コラーゲンカラー</button>
             <button type="button" onclick="showMenu('male')">スタンダードカラー</button>
-            <button type="button" onclick="showMenu('genchi')">メニューを現地で決めたい方</button>
+            <button type="button" onclick="showMenu('genchi')">メニューは来店時に相談したい</button>
         </div>
 
         <div id="treatment-text" style="display: none; margin-bottom: 10px;"></div>
 
         <div id="male" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆ノーマルカラー◆</span>
+                <span class="highlight-text">◆スタンダードカラー◆</span>
             </div>
             <div class="symptoms">
                 <div class="info-textnomal">⚫︎2cm以上伸びている方は<br>全体染め(2cm以上の根元染め)を<br>ご選択ください</div>
-                <button type="button" onclick="selectSymptom(this, 'treatment1')" data-price="2530">根元染め</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment2')" data-price="3190">全体染め</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment3')" data-price="3850">全体染め ロング</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment4')" data-price="1980">部分根元染め</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment1')" data-name="根元染め" data-price="3080">根元染め<br>2cm以内<br><small>2,800円（税込3,080円）</small></button>
+                <div class="info-textmemo">※2cm以上伸びた部分がある場合、こちらのメニューはご選択いただくことができません</div>
+                <button type="button" onclick="selectSymptom(this, 'treatment2')" data-name="全体染め" data-price="3630">全体染め<br>(2cm以上〜肩上までの範囲)<br><small>3,300円（税込3,630円）</small></button>
+                <div class="info-textmemo">※ショートヘア対象メニュー</div>
+                <button type="button" onclick="selectSymptom(this, 'treatment3')" data-name="全体染め ロング" data-price="4290">全体染め ロング<br>(肩ライン以上)<br><small>3,900円（税込4,290円）</small></button>
+                <div class="info-textmemo">※ミディアム〜ロングヘア対象メニュー</div>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
                 <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="550">アルカリ除去 （後処理）</button>
-                <div class="info-textmemo">残留アルカリ除去・内部水分保持・消臭効果<br>価格：＋550円</div>
+                <div class="info-textmemo">残留アルカリ除去・内部水分保持・消臭効果<br>価格：＋500円（税込550円）</div>
                 <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="770">プレックス（前・後処理付）</button>
-                <div class="info-textmemo">※前&後処理付<br>ダメージを抑えて内部から毛髪強化<br>価格：＋770円</div>
+                <div class="info-textmemo">※前&後処理付<br>ダメージを抑えて内部から毛髪強化<br>価格：＋700円（税込770円）</div>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="770">コラーゲン（前処理付）</button>
-                 <div class="info-textmemo">コラーゲン【保湿&毛髪保護】<br>①ハリ・コシUP<br>②ツヤ感・潤いUP<br>※前処理付<br>価格：＋770円</div>
-                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)"data-price="1430">カラーケアトリートメント</button>
-                <div class="info-textmemo">2step サラサラor<br>3step うるおい<br>価格：＋1430円</div>
+                 <div class="info-textmemo">コラーゲン【保湿&毛髪保護】<br>①ハリ・コシUP<br>②ツヤ感・潤いUP<br>※前処理付<br>価格：＋700円（税込770円）</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)"data-price="1430">潤いUPケアトリートメント</button>
+                <div class="info-textmemo">2step サラサラor<br>3step うるおい<br>価格：＋1,300円（税込1,430円）</div>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="330">頭皮保護ガード</button>
-                <div class="info-textmemo">価格：＋330円</div>
+                <div class="info-textmemo">価格：＋300円（税込330円）</div>
             </div>
         </div>
 
         <div id="female" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆コラーゲンカラー◆</span>
+                <span class="highlight-text">◆ケアカラーコラーゲン◆<br><span style="font-weight:normal; opacity:0.8; font-size:0.8em;">※前処理付き</span></span>
             </div>
             <div class="symptoms">
                 <div class="info-textnomal">⚫︎2cm以上伸びている方は<br>全体染め(2cm以上の根元染め)を<br>ご選択ください</div>
-                <button type="button" onclick="selectSymptom(this, 'treatment5')" data-price="3300">コラーゲンカラー根元染め</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment6')" data-price="3960">コラーゲンカラー全体染め</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment7')" data-price="4620">コラーゲンカラー全体染め ロング</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment5')" data-name="コラーゲンカラー根元染め" data-price="3850">コラーゲンカラー根元染め<br><small>3,500円（税込3,850円）</small></button>
+                <div class="info-textmemo">※2cm以上伸びた部分がある場合、こちらのメニューはご選択いただくことができません</div>
+                <button type="button" onclick="selectSymptom(this, 'treatment6')" data-name="コラーゲンカラー全体染め" data-price="4400">コラーゲンカラー全体染め<br><small>4,000円（税込4,400円）</small></button>
+                <div class="info-textmemo">※ショートヘア対象メニュー</div>
+                <button type="button" onclick="selectSymptom(this, 'treatment7')" data-name="コラーゲンカラー全体染め ロング" data-price="5060">コラーゲンカラー全体染め ロング<br><small>4,600円（税込5,060円）</small></button>
+                <div class="info-textmemo">※ミディアム〜ロングヘア対象メニュー</div>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
                 <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="550">アルカリ除去 （後処理）</button>
-                <div class="info-textmemo">残留アルカリ除去・内部水分保持・消臭効果<br>価格：＋550円</div>
-                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="1430">カラーケアトリートメント</button>
-                <div class="info-textmemo">2step サラサラor<br>3step うるおい<br>価格：＋1430円</div>
+                <div class="info-textmemo">残留アルカリ除去・内部水分保持・消臭効果<br>価格：＋500円（税込550円）</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="1430">潤いUPケアトリートメント</button>
+                <div class="info-textmemo">2step サラサラor<br>3step うるおい<br>価格：＋1,300円（税込1,430円）</div>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="330">頭皮保護ガード</button>
-                <div class="info-textmemo">価格：＋330円</div>
+                <div class="info-textmemo">価格：＋300円（税込330円）</div>
             </div>
         </div>
 
         <div id="whitening" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆プレックスカラー◆</span>
+                <span class="highlight-text">◆ケアカラープレックス◆<br><span style="font-weight:normal; opacity:0.8; font-size:0.8em;">※前・後処理付き</span></span>
             </div>
             <div class="symptoms">
                 <div class="info-textnomal">⚫︎2cm以上伸びている方は<br>全体染め(2cm以上の根元染め)を<br>ご選択ください</div>
-                <button type="button" onclick="selectSymptom(this, 'treatment8')" data-price="3300">プレックスカラー根元染め</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment9')" data-price="3960">プレックスカラー全体染め</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment10')" data-price="4620">プレックスカラー全体染め ロング</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment8')" data-name="プレックスカラー根元染め" data-price="3850">プレックスカラー根元染め<br><small>3,500円（税込3,850円）</small></button>
+                <div class="info-textmemo">※2cm以上伸びた部分がある場合、こちらのメニューはご選択いただくことができません</div>
+                <button type="button" onclick="selectSymptom(this, 'treatment9')" data-name="プレックスカラー全体染め" data-price="4400">プレックスカラー全体染め<br><small>4,000円（税込4,400円）</small></button>
+                <div class="info-textmemo">※ショートヘア対象メニュー</div>
+                <button type="button" onclick="selectSymptom(this, 'treatment10')" data-name="プレックスカラー全体染め ロング" data-price="5060">プレックスカラー全体染め ロング<br><small>4,600円（税込5,060円）</small></button>
+                <div class="info-textmemo">※ミディアム〜ロングヘア対象メニュー</div>
             </div>
             <div class="highlight-background">
                 <span class="highlight-text">オプション</span>
             </div>
             <div class="irradiations">
                 <button type="button" id="firstirradiations" onclick="selectirradiations(this)" data-price="550">アルカリ除去 （後処理）</button>
-                <div class="info-textmemo">残留アルカリ除去・内部水分保持・消臭効果<br>価格：＋550円</div>
-                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="1430">カラーケアトリートメント</button>
-                <div class="info-textmemo">2step サラサラor<br>3step うるおい<br>価格：＋1430円</div>
+                <div class="info-textmemo">残留アルカリ除去・内部水分保持・消臭効果<br>価格：＋500円（税込550円）</div>
+                <button type="button" id="repeatirradiations" onclick="selectirradiations(this)" data-price="1430">潤いUPケアトリートメント</button>
+                <div class="info-textmemo">2step サラサラor<br>3step うるおい<br>価格：＋1,300円（税込1,430円）</div>
                 <button type="button" id="sanirradiations" onclick="selectirradiations(this)" data-price="330">頭皮保護ガード</button>
-                <div class="info-textmemo">価格：＋330円</div>
+                <div class="info-textmemo">価格：＋300円（税込330円）</div>
             </div>
         </div>
 
         <div id="omakase" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆髪傷めたくない方必見！◆<br>◆優しいカラー完全ケアセット◆</span>
+                <span class="highlight-text">♦︎MINTおまかせケアカラーセット♦︎<br><span style="font-weight:normal; opacity:0.8; font-size:0.8em;">※プレックス or コラーゲン＋アルカリ除去</span></span>
             </div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this, 'treatment11')" data-price="0">おまかせケアカラー施術内容はこちら</button>
-                <div class="info-textmemo">髪に優しいケアカラー＋アルカリ除去＋専門店の潤いツヤトリートメント</div>
             </div>
             <div class="highlight-background">
-                <span class="highlight-text">染める範囲をお選びください</span>
+                <span class="highlight-text">※染める範囲は下のボタンからお選び下さい<br><span style="font-weight:normal; opacity:0.7; font-size:0.8em;">※コラーゲンカラーに変更可</span></span>
             </div>
             <div class="irradiations">
-                <button type="button" onclick="selectirradiations(this)" data-price="5280">根元染め2cm以内</button>
-                <div class="info-textmemo">料金：5280円(税込)</div>
-                <button type="button" onclick="selectirradiations(this)" data-price="5940">根元染め2cm以上〜肩上までの範囲</button>
-                <div class="info-textmemo">料金：5940円(税込)</div>
-                <button type="button" onclick="selectirradiations(this)" data-price="6600">全体染めロング(肩より下までの範囲)</button>
-                <div class="info-textmemo">料金：6600円(税込)</div>
+                <button type="button" onclick="selectirradiations(this)" data-price="5830">根元染め2cm以内</button>
+                <div class="info-textmemo">料金：5,300円（税込5,830円）<br>※2cm以上伸びた部分がある場合、こちらのメニューはご選択いただくことができません</div>
+                <button type="button" onclick="selectirradiations(this)" data-price="6380">根元染め2cm以上〜肩上までの範囲</button>
+                <div class="info-textmemo">料金：5,800円（税込6,380円）<br>※ショートヘア対象メニュー</div>
+                <button type="button" onclick="selectirradiations(this)" data-price="7040">全体染めロング(肩より下までの範囲)</button>
+                <div class="info-textmemo">料金：6,400円（税込7,040円）<br>※ミディアム〜ロングヘア対象メニュー</div>
             </div>
         </div>
 
         <div id="genchi" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆メニューを現地で決めたい方はこちら◆</span>
+                <span class="highlight-text">◆メニューは来店時に相談したい方はこちら◆</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment12')" data-price="0">メニューを現地で決める方はこちらを選択してください</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment12')" data-name="メニューを現地で決める方はこちらを選択してください" data-price="0">メニューを現地で決める方は<br>こちらを選択してください</button>
             </div>
         </div>
 
@@ -992,6 +1042,17 @@
         <div class="label">ご予約内容</div>
         <div id="displayInfo"></div> <!-- ここに選択された情報を表示します -->
 
+        <div class="policy-container">
+            <div class="policy-text">
+                ●予約日時の変更または、<br>
+                キャンセルは予約日前日の17時迄<br>
+                ●当日無断キャンセル料100%
+            </div>
+            <label class="policy-agreement">
+                <input type="checkbox" id="agreePolicy"> 同意する
+            </label>
+        </div>
+
         <button class="submit-button" onclick="submitForm()" div id="section-message">予約を行う</button>
     </div>
 
@@ -1010,7 +1071,7 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             liff.init({
-                liffId: '2001298999-Kv8a9oo5'
+                liffId: '2001302547-NXrj0kn9'
             }).then(() => {
                 console.log('LIFF初期化成功');
             }).catch((err) => {
@@ -1034,7 +1095,7 @@
             'アルカリ除去 （後処理）': 0,
             'プレックス（前・後処理付）': 0,
             'コラーゲン（前処理付）': 0,
-            'カラーケアトリートメント': 0,
+            '潤いUPケアトリートメント': 0,
             '頭皮保護ガード': 0,
             '根元染め2cm以内': 0,
             '根元染め2cm以上〜肩上までの範囲': 0,
@@ -1047,14 +1108,13 @@
             '根元染め': 1,
             '全体染め': 1,
             '全体染め ロング': 1,
-            '部分根元染め': 1,
             'コラーゲンカラー根元染め': 1,
             'コラーゲンカラー全体染め': 1,
             'コラーゲンカラー全体染め ロング': 1,
             'プレックスカラー根元染め': 1,
             'プレックスカラー全体染め': 1,
             'プレックスカラー全体染め ロング': 1,
-            '髪を傷めたくない人必見！スペシャルケアセット': 1,
+            'おまかせケアカラー施術内容はこちら': 1,
             'メニューを現地で決める方はこちらを選択してください': 1
         };
 
@@ -1103,6 +1163,7 @@ if (savedGender) {
             });
         });
 
+
         function updateDisplayInfo() {
             const name = document.getElementById('name').value;
             const visitCountText = visitCount ? `<span style="color:#00b08b;"><strong>【ご来店回数】</strong></span><br>・${visitCount}` : '・来店回数が未選択です';
@@ -1126,10 +1187,10 @@ if (savedGender) {
             if (isGenchi) {
                 totalAmountText = `<span style="color:#00b08b;"><strong>【合計金額】</strong></span><br>・現地で選択されたメニューにより変動します`;
             } else {
-                const totalPrice = menuPrice + optionsPrice;
-                const taxExcluded = Math.round(totalPrice / 1.1);
-                const tax = totalPrice - taxExcluded;
-                totalAmountText = `<span style="color:#00b08b;"><strong>【合計金額】</strong></span><br>・¥${totalPrice}（税込）<br>　（税抜 ¥${taxExcluded} ＋ 税 ¥${tax}）`;
+                const totalIncluded = menuPrice + optionsPrice; // 税込合計
+                const taxExcluded = Math.floor(totalIncluded / 1.1); // 税抜（切り捨て）
+                const tax = totalIncluded - taxExcluded; // 消費税
+                totalAmountText = `<span style="color:#00b08b;"><strong>【合計金額】</strong></span><br>・小計（税抜）　¥${taxExcluded}<br>・消費税（10%）　¥${tax}<br>─────────<br>・<strong>合計（税込）　¥${totalIncluded}</strong>`;
             }
             const selectedDateText = selectedFullDate ? `<span style="color:#00b08b;"><strong>【希望日時】</strong></span><br>・${selectedFullDate}` : '・日時が未選択です';
 
@@ -1248,7 +1309,7 @@ if (savedGender) {
                 }
 
                 // 選択されたメニューの時間を取得して保存
-                const selectedMenu = button.textContent;
+                const selectedMenu = button.getAttribute('data-name') || button.textContent;
                 selectedMenuTime = menuTimes[selectedMenu] || 0; // メニュー時間を取得して保存
                 selectedSymptom = [selectedMenu]; // 選択されたメニュー名を配列として保存
                 menuPrice = parseInt(button.getAttribute('data-price'), 10) || 0;  // メニューの価格を取得
@@ -1260,27 +1321,25 @@ if (savedGender) {
             fetchAvailability(currentDate);
 
             if (treatmentId === 'treatment1') {
-                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以内）</div><div style="text-align: right;"><strong>料金：2530円</strong></div>`;
+                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以内）</div><div style="text-align: right;"><strong>料金：2,800円（税込3,080円）</strong></div>`;
             } else if (treatmentId === 'treatment2') {
-                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以上～肩上まで）</div><div style="text-align: right;"><strong>料金：3190円</strong></div>`;
+                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以上～肩上まで）</div><div style="text-align: right;"><strong>料金：3,300円（税込3,630円）</strong></div>`;
             } else if (treatmentId === 'treatment3') {
-                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以上〜肩下）</div><div style="text-align: right;"><strong>料金：3850円</strong></div>`;
-            } else if (treatmentId === 'treatment4') {
-                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以内の顔回り、分け目のみ）</div><div style="text-align: right;"><strong>料金：1980円</strong></div>`;
+                treatmentText.innerHTML = `<div style="text-align: left;">（肩ライン以上）</div><div style="text-align: right;"><strong>料金：3,900円（税込4,290円）</strong></div>`;
             } else if (treatmentId === 'treatment5') {
-                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以内）</div><div style="text-align: right;"><strong>料金：3300円</strong></div>`;
+                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以内）</div><div style="text-align: right;"><strong>料金：3,500円（税込3,850円）</strong></div>`;
             } else if (treatmentId === 'treatment6') {
-                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以上～肩上まで）</div><div style="text-align: right;"><strong>料金：3960円</strong></div>`;
+                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以上～肩上まで）</div><div style="text-align: right;"><strong>料金：4,000円（税込4,400円）</strong></div>`;
             } else if (treatmentId === 'treatment7') {
-                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以上～肩下まで）</div><div style="text-align: right;"><strong>料金：4620円</strong></div>`;
+                treatmentText.innerHTML = `<div style="text-align: left;">（肩ライン以上）</div><div style="text-align: right;"><strong>料金：4,600円（税込5,060円）</strong></div>`;
             } else if (treatmentId === 'treatment8') {
-                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以内）</div><div style="text-align: right;"><strong>料金：3300円</strong></div>`;
+                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以内）</div><div style="text-align: right;"><strong>料金：3,500円（税込3,850円）</strong></div>`;
             } else if (treatmentId === 'treatment9') {
-                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以上～肩上まで）</div><div style="text-align: right;"><strong>料金：3960円</strong></div>`;
+                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以上～肩上まで）</div><div style="text-align: right;"><strong>料金：4,000円（税込4,400円）</strong></div>`;
             } else if (treatmentId === 'treatment10') {
-                treatmentText.innerHTML = `<div style="text-align: left;">（根元2cm以上～肩下まで）</div><div style="text-align: right;"><strong>料金：4620円</strong></div>`;
+                treatmentText.innerHTML = `<div style="text-align: left;">（肩ライン以上）</div><div style="text-align: right;"><strong>料金：4,600円（税込5,060円）</strong></div>`;
             } else if (treatmentId === 'treatment11') {
-                treatmentText.innerHTML = `<div style="text-align: left;">髪に優しいケアカラー＋アルカリ除去＋専門店の潤いツヤトリートメント</div><div style="text-align: left; font-size:0.85em; color:#888;">※染める範囲は下のボタンからお選びください</div>`;
+                treatmentText.innerHTML = `<div style="text-align: left;">❶塗布前に栄養補給<br>❷内部強化プレックスカラー<br>❸シャンプー後に処理&アルカリ除去<br>❹潤いUPケアトリートメント</div><div style="text-align: left; font-size:0.85em; color:#888;">※染める範囲は下のボタンからお選び下さい<br>※コラーゲンカラーに変更可</div>`;
             } else if (treatmentId === 'treatment12') {
                 treatmentText.innerHTML = `<div style="text-align: left;">メニューは現地にてお選びいただけます</div>`;
             } else {
@@ -1294,7 +1353,7 @@ if (savedGender) {
             treatmentText.style.display = 'block';
 
             // 選択されたメニューの名前と価格を取得
-            const symptomName = button.textContent;  // ボタンのテキストを取得
+            const symptomName = button.getAttribute('data-name') || button.textContent;  // data-nameがあればそれを使用、なければテキストを取得
             selectedSymptom = [symptomName];  // 選択されたメニュー名を配列として保存
             menuPrice = parseInt(button.getAttribute('data-price'), 10) || 0;  // メニューの価格を取得
 
@@ -1457,6 +1516,12 @@ if (savedGender) {
                 message: document.getElementById('message').value.trim()
             };
 
+            const isAgreed = document.getElementById('agreePolicy').checked;
+            if (!isAgreed) {
+                alert('キャンセルポリシーに同意してください。');
+                return;
+            }
+
             // フォームデータのチェック
             if (!formData.name) {
                 alert('お名前を入力してください。');
@@ -1513,7 +1578,7 @@ if (savedGender) {
                 return;
             }
 
-            const url = 'https://script.google.com/macros/s/AKfycbz2wZt7L1ZVfVfPQI-CqXMuucPXj2DJqrb_Qt0WFWlHMXEEytjvuwqyg9qzDxg4kO2ICA/exec' +
+            const url = 'https://script.google.com/macros/s/AKfycbzYLOJRlBGEWeafO0gz9pV705maVVr9hb0dY1LtjZzlnqebiTA8KGOwh47UDbqbenh6/exec' +
                 `?startTime=${startTime.toISOString()}&endTime=${endTime.toISOString()}`;
 
             try {
@@ -1546,12 +1611,10 @@ if (savedGender) {
             const table = calendar.querySelector('table tbody');
 
             const times = [
-                '09:00', '09:20',
-                '10:20', '10:40', '11:20', '11:40',
-                '12:00', '12:20',
-                '13:00', '13:20', '14:20', '14:40',
-                '15:20', '15:40',
-                '16:00', '16:20'
+                '09:00', '09:20', '09:40', '10:00', '10:20', '10:40',
+                '11:00', '11:20', '11:40', '12:00', '12:20', '12:40',
+                '13:00', '13:20', '13:40', '14:00', '14:20', '14:40',
+                '15:00', '15:20', '15:40', '16:00', '16:20'
             ];
 
             if (table.rows.length === 0) {
@@ -1583,11 +1646,8 @@ if (savedGender) {
                 }
             }
 
-
 // 現在の日時を取得
 const now = new Date();
-const limitDate = new Date();
-limitDate.setDate(now.getDate() + 30); // 今日から30日後
 
 // テーブルの内容を更新
 for (let i = 0; i < 7; i++) {
@@ -1616,7 +1676,7 @@ for (let i = 0; i < 7; i++) {
         slotStart.setHours(parseInt(times[j].split(':')[0]), parseInt(times[j].split(':')[1]), 0, 0);
 
         const slotEnd = new Date(slotStart);
-        let menuDuration = selectedMenuTime || 10;
+        let menuDuration = selectedMenuTime || 0;
         let visitDuration = selectedVisitTime || 0;
         let irradiationsDuration = selectedirradiationsTime || 0;
 
@@ -1630,22 +1690,16 @@ for (let i = 0; i < 7; i++) {
             continue;
         }
 
-        // 30日後以降は✕に設定
-        if (slotStart > limitDate) {
-            cell.textContent = '✕';
-            cell.classList.add('unavailable');
-            continue;
-        }
-
         // 20分後の時間を計算
         const nowPlus20 = new Date(now.getTime() + 20 * 60 * 1000);
 
-        // リアルタイムで+20分後までの時間帯を×にする
+        // リアルタイムで+20分後までの時間帯を✕にする
         if (slotStart < nowPlus20) {
             cell.textContent = '✕';
             cell.classList.add('unavailable');
             continue;
         }
+
 
         const isBusinessDay = businessDays.some(businessDay => {
             const businessDayStart = new Date(businessDay.start);
@@ -1667,13 +1721,49 @@ for (let i = 0; i < 7; i++) {
             return acc;
         }, 0);
 
-                    // 営業日のイベント時間内に他のイベントがある場合
-                    if (isBusinessEventTime && count > 0) {
+                    // 1枠のみの時間（9:40・10:00・11:00・11:20・12:20・12:40・13:40・14:00・15:00・15:20）
+                    // 既に予約が1件でも入っていれば✕にする（既存の他の時間は2枠のまま）
+                    // ※15:20は土曜・指定日のみ開放。開放日でも1枠のみ（15:00と同様）
+                    const isOneSlotTime = ['09:40', '10:00', '11:00', '11:20', '12:20', '12:40', '13:40', '14:00', '15:00', '15:20'].includes(times[j]);
+
+                    // 毎週土曜日は曜日判定（getDay()===6）で恒久的に開放。期限なし・年をまたいでも自動継続。
+                    // saturdayLikeDates は「土曜以外で臨時に土曜と同じ扱いにする日」のみを列挙する。
+                    // 指定日は土曜日と同じ扱い（午後の枠も開放・16:20は3枠）
+                    const slotDateStr = `${slotStart.getFullYear()}-${String(slotStart.getMonth() + 1).padStart(2, '0')}-${String(slotStart.getDate()).padStart(2, '0')}`;
+                    const saturdayLikeDates = ['2026-06-24', '2026-07-21', '2026-08-05', '2026-08-10', '2026-08-12'];
+                    const isSaturdayLike = slotStart.getDay() === 6 || saturdayLikeDates.includes(slotDateStr);
+
+                    // 受付不可日：スタッフ2名体制の日のため、下記の時間帯を予約不可（✕）にする
+                    // 追加・削除はこの2つの配列のみ編集すればよい
+                    const closedReceptionDates = ['2026-09-01', '2026-09-03', '2026-09-04', '2026-09-07', '2026-09-09', '2026-09-28', '2026-09-29', '2026-09-30'];
+                    const closedReceptionTimes = ['09:40', '10:00', '11:00', '11:20', '12:20', '12:40', '13:40', '14:00', '15:00', '15:20', '16:20'];
+                    const isClosedReception = closedReceptionDates.includes(slotDateStr) && closedReceptionTimes.includes(times[j]);
+
+                    // 受付不可日は最優先で✕（予約の有無に関係なく閉じる）
+                    if (isClosedReception) {
                         cell.textContent = '✕';
                         cell.classList.add('unavailable');
                     }
-                    // 土曜日以外のすべての曜日で15時20分は利用不可
-                    else if (slotStart.getHours() === 15 && slotStart.getMinutes() === 20 && slotStart.getDay() !== 6) {
+                    else if (isOneSlotTime && count > 0) {
+                        cell.textContent = '✕';
+                        cell.classList.add('unavailable');
+                    }
+                    // 営業日のイベント時間内に他のイベントがある場合
+                    else if (isBusinessEventTime && count > 0) {
+                        cell.textContent = '✕';
+                        cell.classList.add('unavailable');
+                    }
+                    // 土曜日（および指定日）以外は15時20分を利用不可
+                    else if (slotStart.getHours() === 15 && slotStart.getMinutes() === 20 && !isSaturdayLike) {
+                        cell.textContent = '✕';
+                        cell.classList.add('unavailable');
+                    }
+                    // 平日（土曜・指定日以外）は13:40・14:00・15:00を利用不可（基本設定）
+                    else if (
+                        ((slotStart.getHours() === 13 && slotStart.getMinutes() === 40) ||
+                         (slotStart.getHours() === 14 && slotStart.getMinutes() === 0) ||
+                         (slotStart.getHours() === 15 && slotStart.getMinutes() === 0)) &&
+                        !isSaturdayLike) {
                         cell.textContent = '✕';
                         cell.classList.add('unavailable');
                     }
@@ -1691,6 +1781,16 @@ for (let i = 0; i < 7; i++) {
                     else if (businessEventTimes.length > 0) {
                         cell.textContent = '✕';
                         cell.classList.add('unavailable');
+                    }
+                    // 土曜日（および指定日）は16:20を3枠（同時刻に3件まで受付可）
+                    else if (isSaturdayLike && slotStart.getHours() === 16 && slotStart.getMinutes() === 20) {
+                        if (count <= 2) {
+                            cell.textContent = '◯';
+                            cell.classList.add('available');
+                        } else {
+                            cell.textContent = '✕';
+                            cell.classList.add('unavailable');
+                        }
                     }
                     // 営業日でかつ他のイベントがない場合
                     else if (isBusinessDay && count === 0) {
